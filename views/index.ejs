@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper</h1>
+        <form action="/scrape" method="POST">
+            <input type="text" name="query" placeholder="Arama Sorgusu" required>
+            <select name="type">
+                <option value="amazon">Amazon</option>
+                <option value="bbc">BBC</option>
+            </select>
+            <button type="submit">Tarama Başlat</button>
+        </form>
+
+        <% if (results.length > 0) { %>
+            <h2>Sonuçlar:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Bağlantı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results.forEach(result => { %>
+                        <tr>
+                            <td><%= result.title %></td>
+                            <td><a href="<%= result.link %>" target="_blank">Ayrıntılar</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>Sonuç bulunamadı.</p>
+        <% } %>
+    </div>
+</body>
+</html>
